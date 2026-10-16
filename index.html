@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Bangun Ruang - Kelas II SD/MI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts untuk tampilan ramah anak -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 1. HALAMAN LOGIN -->
+    <section id="login-page" class="page active">
+        <div class="login-card">
+            <div class="mascot-header">🌟</div>
+            <h1>Belajar Bangun Ruang</h1>
+            <p>Matematika Seru untuk Kelas II SD/MI</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="student-name">Nama Lengkap Kamu:</label>
+                    <input type="text" id="student-name" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="input-group">
+                    <label for="student-class">Kelas:</label>
+                    <input type="text" id="student-class" placeholder="Contoh: 2 A / 2 B" required>
+                </div>
+                <button type="submit" class="btn-primary">Mulai Belajar 🚀</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- KONTAINER UTAMA SETELAH LOGIN -->
+    <div id="main-app" class="hidden">
+        <!-- HEADER / NAVBAR -->
+        <header class="app-header">
+            <div class="user-profile">
+                <span id="display-name">Siswa</span> (<span id="display-class">Kelas</span>)
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" onclick="switchPage('dashboard')">🏠 Menu</button>
+                <button class="nav-btn" onclick="switchPage('materi')">📚 Materi</button>
+                <button class="nav-btn" onclick="switchPage('aktivitas')">🎮 Aktivitas</button>
+                <button class="nav-btn" onclick="switchPage('kuis')">✍️ Kuis</button>
+                <button class="nav-btn" onclick="switchPage('hasil')">📊 Hasil</button>
+                <button class="nav-btn" onclick="switchPage('petunjuk')">💡 Petunjuk</button>
+                <button class="nav-btn" onclick="switchPage('tentang')">ℹ️ Tentang</button>
+                <button class="nav-btn logout-btn" onclick="logout()">Keluar</button>
+            </nav>
+        </header>
+
+        <!-- 2. DASHBOARD / MENU UTAMA -->
+        <section id="dashboard-page" class="page-content active">
+            <div class="welcome-banner">
+                <h2>Halo, <span id="welcome-name"></span>! 👋</h2>
+                <p>Selamat datang kembali di petualangan matematika bangun ruang!</p>
+            </div>
+
+            <div class="progress-container">
+                <h3>Progress Belajar Kamu</h3>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;">0%</div>
+                </div>
+            </div>
+
+            <div class="menu-grid">
+                <div class="menu-card" onclick="switchPage('materi')">
+                    <div class="card-icon">📚</div>
+                    <h3>Materi Pelajaran</h3>
+                    <p>Kenali kubus, balok, bola, tabung, dan kerucut!</p>
+                </div>
+                <div class="menu-card" onclick="switchPage('aktivitas')">
+                    <div class="card-icon">🎮</div>
+                    <h3>Aktivitas Belajar</h3>
+                    <p>Mainkan game mencocokkan & kelompokkan benda!</p>
+                </div>
+                <div class="menu-card" onclick="switchPage('kuis')">
+                    <div class="card-icon">✍️</div>
+                    <h3>Kuis Seru</h3>
+                    <p>Uji kemampuanmu dengan 10 soal menarik.</p>
+                </div>
+                <div class="menu-card" onclick="switchPage('hasil')">
+                    <div class="card-icon">📊</div>
+                    <h3>Hasil Belajar</h3>
+                    <p>Lihat nilai dan pencapaian belajarmu di sini.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. HALAMAN MATERI -->
+        <section id="materi-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>📚 Materi Bangun Ruang</h2>
+                <p>Gunakan tombol di bawah untuk membaca bagian demi bagian.</p>
+            </div>
+
+            <div class="material-card">
+                <div id="material-content">
+                    <!-- Konten materi dimuat dinamis via JavaScript -->
+                </div>
+                <div class="material-navigation">
+                    <button id="prev-mat-btn" class="btn-secondary" onclick="changeMaterial(-1)">⬅️ Sebelumnya</button>
+                    <span id="material-counter">1 / 12</span>
+                    <button id="next-mat-btn" class="btn-primary" onclick="changeMaterial(1)">Berikutnya ➡️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. HALAMAN AKTIVITAS BELAJAR -->
+        <section id="aktivitas-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>🎮 Aktivitas Belajar Interaktif</h2>
+                <p>Ayo amati dan pilih jawaban yang paling tepat!</p>
+            </div>
+
+            <div class="activity-container">
+                <div class="activity-box">
+                    <h3 id="act-question-title">1. Mencocokkan Benda & Bangun Ruang</h3>
+                    <p id="act-question-text">Manakah di bawah ini yang merupakan contoh bentuk **Kubus**?</p>
+                    
+                    <div class="options-grid" id="act-options">
+                        <!-- Pilihan gambar/opsi dimuat via JavaScript -->
+                    </div>
+                    <div id="act-feedback" class="feedback-msg hidden"></div>
+                    <button id="next-activity-btn" class="btn-primary hidden" onclick="nextActivity()">Pertanyaan Selanjutnya ➡️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. HALAMAN KUIS -->
+        <section id="kuis-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>✍️ Kuis Evaluasi Bangun Ruang</h2>
+                <p>Jawablah 10 soal pilihan ganda dengan teliti!</p>
+            </div>
+
+            <div id="quiz-container" class="quiz-box">
+                <div class="quiz-header-info">
+                    <span id="quiz-counter">Soal 1 dari 10</span>
+                    <span id="quiz-score-tracker">Skor Sementara: 0</span>
+                </div>
+                <h3 id="quiz-question">Pertanyaan kuis muncul di sini...</h3>
+                <div id="quiz-options" class="quiz-options-list">
+                    <!-- Opsi jawaban kuis -->
+                </div>
+                <button id="quiz-next-btn" class="btn-primary hidden" onclick="nextQuizQuestion()">Soal Berikutnya ➡️</button>
+            </div>
+
+            <!-- Hasil Kuis / Pembahasan -->
+            <div id="quiz-result-box" class="quiz-result-box hidden">
+                <h3>🎉 Kuis Selesai!</h3>
+                <div class="result-stats">
+                    <p>Nilai Kamu: <strong id="res-score">0</strong></p>
+                    <p>Jawaban Benar: <strong id="res-true">0</strong></p>
+                    <p>Jawaban Salah: <strong id="res-false">0</strong></p>
+                    <p>Persentase: <strong id="res-percent">0%</strong></p>
+                    <p>Keterangan: <span id="res-desc">-</span></p>
+                </div>
+                <div class="result-actions">
+                    <button class="btn-primary" onclick="reviewQuiz()">Lihat Pembahasan 📝</button>
+                    <button class="btn-secondary" onclick="restartQuiz()">Ulangi Kuis 🔄</button>
+                    <button class="btn-primary" onclick="switchPage('hasil')">Lihat Halaman Hasil 📊</button>
+                </div>
+            </div>
+
+            <!-- Bagian Pembahasan Soal -->
+            <div id="quiz-review-box" class="quiz-review-box hidden">
+                <h3>📝 Pembahasan Soal Kuis</h3>
+                <div id="review-content-list"></div>
+                <button class="btn-primary" onclick="switchPage('dashboard')">Kembali ke Menu Utama 🏠</button>
+            </div>
+        </section>
+
+        <!-- 6. HALAMAN HASIL BELAJAR -->
+        <section id="hasil-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>📊 Hasil Belajar Siswa</h2>
+                <p>Catatan prestasi belajarmu tersimpan otomatis di perangkat ini.</p>
+            </div>
+
+            <div class="result-card">
+                <div class="result-row"><span>Nama Siswa:</span> <strong id="res-name-val">-</strong></div>
+                <div class="result-row"><span>Kelas:</span> <strong id="res-class-val">-</strong></div>
+                <div class="result-row"><span>Nilai Kuis Terakhir:</span> <strong id="res-score-val">Belum Mengerjakan</strong></div>
+                <div class="result-row"><span>Jawaban Benar:</span> <strong id="res-true-val">-</strong></div>
+                <div class="result-row"><span>Jawaban Salah:</span> <strong id="res-false-val">-</strong></div>
+                <div class="result-row"><span>Persentase:</span> <strong id="res-percent-val">-</strong></div>
+                <div class="result-row"><span>Status Kelulusan:</span> <strong id="res-status-val">-</strong></div>
+                <button class="btn-primary" onclick="switchPage('dashboard')" style="margin-top: 20px;">Kembali ke Menu Utama 🏠</button>
+            </div>
+        </section>
+
+        <!-- 7. HALAMAN PETUNJUK -->
+        <section id="petunjuk-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>💡 Petunjuk Penggunaan Media</h2>
+                <p>Ikuti langkah mudah berikut ini agar belajarmu semakin menyenangkan!</p>
+            </div>
+            <div class="info-card">
+                <ol class="instruction-list">
+                    <li><strong>Masukkan Nama dan Kelas:</strong> Ketik nama lengkap dan kelasmu pada halaman awal login, lalu klik tombol "Mulai Belajar".</li>
+                    <li><strong>Masuk ke Dashboard:</strong> Pilih menu yang ingin kamu pelajari.</li>
+                    <li><strong>Pelajari Materi:</strong> Baca penjelasan materi bangun ruang secara bertahap menggunakan tombol "Sebelumnya" dan "Berikutnya".</li>
+                    <li><strong>Kerjakan Aktivitas Belajar:</strong> Mainkan game pengamatan gambar dan pencocokan benda sehari-hari.</li>
+                    <li><strong>Kerjakan Kuis:</strong> Uji pemahamanmu lewat 10 soal pilihan ganda interaktif.</li>
+                    <li><strong>Lihat Hasil Belajar:</strong> Periksa nilai dan pencapaian skormu pada menu Hasil Belajar.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- 8. HALAMAN TENTANG MEDIA -->
+        <section id="tentang-page" class="page-content hidden">
+            <div class="section-header">
+                <h2>ℹ️ Tentang Media Pembelajaran</h2>
+                <p>Informasi lengkap mengenai aplikasi edukasi ini.</p>
+            </div>
+            <div class="info-card">
+                <ul class="about-list">
+                    <li><strong>Nama Media:</strong> Website Interaktif Bangun Ruang (WiBR)</li>
+                    <li><strong>Materi Pembelajaran:</strong> Pengertian Benda & Bangun Ruang, Perbedaan Bangun Datar & Ruang, Kubus, Balok, Bola, Kerucut, Tabung, serta Sisi, Rusuk, dan Titik Sudut.</li>
+                    <li><strong>Sasaran Pengguna:</strong> Siswa Kelas II SD / MI (Usia 7–8 tahun).</li>
+                    <li><strong>Tujuan Media:</strong> Membantu siswa mengenal, mengelompokkan, dan mengidentifikasi bentuk bangun ruang dalam kehidupan sehari-hari melalui visualisasi yang interaktif dan menyenangkan.</li>
+                    <li><strong>Pengembang:</strong> Tim Web Developer, UI/UX Designer, & Ahli Media Pembelajaran SD.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
